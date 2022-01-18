@@ -1,0 +1,138 @@
+<header>
+  <h1 class="heading">
+    <a href="index.html">
+      MM-CHIGASAKI
+    </a>
+  </h1>
+
+<div class="social">
+  <i class="fab fa-facebook-square"></i>
+  <i class="fab fa-twitter-square"></i>
+  <i class="fab fa-instagram"></i>
+</div>
+
+</header>
+
+<% if user_signed_in? %>
+<nav>
+  <ul class="nav-list">
+    <li class="nav-list-item">Home</li>
+    <li class="nav-list-item">About</li>
+    <li class="nav-list-item">Sign up</li>
+    <li class="nav-list-item">Log in</li>
+  </ul>
+</nav>
+<% else %>
+<nav>
+  <ul class="nav-list">
+    <li class="nav-list-item">Home</li>
+    <li class="nav-list-item">About</li>
+    <li class="nav-list-item">Sign up</li>
+    <li class="nav-list-item">Log in</li>
+  </ul>
+</nav>
+
+
+<% end %>
+
+<div class="main-visual">
+  <div class="main-visual-content">
+    <p class="main-visual-text">
+      茅ヶ崎市のおすすめスポットをどんどん共有して<br />
+      皆さんで一緒に茅ヶ崎を盛り上げていきましょう!<br />
+      まだ訪れたことがない方は是非参考にしてください！
+    </p>
+    <p class="main-visual-name">
+      Chigasaki-City
+    </p>
+  </div>
+</div>
+
+<main>
+ <div class="sidebar">
+   <section class="popular">
+     <h2 class="sidebar-heading common-heading">Popular</h2>
+     <div class="sidebar-contents">
+       <p class popular-text>
+         abcdefghijklmn<br />opqrstu
+       </p>
+       <p class popular-text>
+         abcdefghijklmn<br />opqrstu
+       </p>
+       <p class popular-text>
+         abcdefghijklmn<br />opqrstu
+       </p>
+       <p class popular-text>
+         abcdefghijklmn<br />opqrstu
+       </p>
+       <p class popular-text>
+         abcdefghijklmn<br />opqrstu
+       </p>
+     </div>
+   </section>
+
+  <section class="categories">
+    <h2 class="categories-heading common-heading">Categories</h2>
+    <div class="sidebar-contents">
+      <div class="instagram-box"></div>
+      <div class="instagram-box"></div>
+      <div class="instagram-box"></div>
+      <div class="instagram-box"></div>
+      <div class="instagram-box"></div>
+      <div class="instagram-box"></div>
+    </div>
+  </secion>
+
+  <section class="categories">
+    <h2 class="categories-heading common-heading">Categories</h2>
+    <div class="sidebar-contents">
+      <p class="categories-text">Technology(15)</p>
+      <p class="categories-text">business(19)</p>
+      <p class="categories-text">abcdefg(18)</p>
+      <p class="categories-text">hijklmn(16)</p>
+      <p class="categories-text">opqrstu(14)</p>
+      <p class="categories-text">vwxyz(13)</p>
+    </div>
+  </section>
+ </div>
+
+ <section class="blog">
+    <h2 class="blog-heading">Recent Blogs</h2>
+
+    <div class="blog-box">
+
+     <% @blogs.each do |blog| %>
+      <div class="blog-item">
+          
+       <div class="blog-image"><%= link_to blog_path(blog.id) do %><%= attachment_image_tag blog, :image %><% end %></div>
+       <section class="blog-text">
+         <h3 class="blog-text-heading"><%= link_to blog.title, blog_path(blog) %></h3>
+         <p class="blog-date"><%= blog.created_at %></p>
+         <span class="category"><%= blog.category %></span>
+         <!--<h3 class="blog-text-heading"><%#= blog.user.name %></h3>-->
+         <p><%= link_to "投稿詳細", blog_path(blog.id) %></p>
+         <p><%= link_to "#{blog.blog_comments.count} コメント", blog_path(blog.id) %></p>
+       </section>
+      </div>
+      <% end %>
+      <%= paginate @blogs %>
+
+    </div>
+
+
+  <div class="pagination">
+   <p><<</p>
+   <p><</p>
+   <p>1</p>
+   <p>2</p>
+   <p>3</p>
+   <p>></p>
+   <p>>></p>
+  </div>
+ </section>
+
+</main>
+
+<footer>
+  <p class="footer-text">© All rights reserved by MM</p>
+</footer>

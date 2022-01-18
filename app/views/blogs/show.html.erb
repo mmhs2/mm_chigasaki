@@ -1,0 +1,160 @@
+<header>
+  <h1 class="heading">
+    <%= link_to "MM-CHIGASAKI", blogs_path %>
+  </h1>
+  <div class="social">
+    <i class="fa fa-facebook-square"></i>
+    <i class="fa fa-twitter-square"></i>
+    <i class="fa fa-instagram"></i>
+  </div>
+</header>
+
+<nav>
+  <ul class="nav-list">
+    <li class="nav-list-item">
+      <a href="#">Home</a>
+    </li>
+    <li class="nav-list-item">About</li>
+    <li class="nav-list-item">Sign up</li>
+    <li class="nav-list-item">Log in</li>
+  </ul>
+</nav>
+
+<div class="main-visual">
+  <div class="main-visual-content">
+    <p class="main-visual-text">
+      茅ヶ崎市のおすすめスポットをどんどん共有して<br />
+      皆さんで一緒に茅ヶ崎を盛り上げていきましょう!<br />
+      まだ訪れたことがない方は是非参考にしてください！
+    </p>
+    <p class="main-visual-name">
+      Chigasaki-City
+    </p>
+  </div>
+</div>
+
+<main>
+  <section class="single-blog">
+    <h2 class="blog-heading">Blog</h2>
+    <section class="blog-box">
+
+      <h3 class="blog-box-heading">
+        <%= @blog.title %>
+      </h3>
+
+      <div class="blog-box-content">
+        <p class="category">
+         <%= @blog.category %>
+        </p>
+        <p class="blog-date">
+         <%= @blog.created_at.strftime('%Y/%m/%d') %>
+        </p>
+      </div>
+      <%= attachment_image_tag @blog, :image %>
+      <p class="single-text">
+        <%= @blog.body %>
+      </p>
+      <% if @blog.user == current_user %>
+       <%= link_to "編集", edit_blog_path(@blog) %>
+       <%= link_to "削除", blog_path(@blog), method: :delete %>
+      <% end %>
+
+      <div>
+      <p>コメント件数:<%= @blog.blog_comments.count %></p>
+        <% @blog.blog_comments.each do |blog_comment| %>
+          <p><%= attachment_image_tag post_image.user, :profile_image, :fill, 60, 60, fallback:"no-image.jpg"%></p>
+          <%= blog_comment.user.name %>
+          <%= blog_comment.created_at.strftime('%Y/%m/%d') %><%= blog_comment.comment %>
+
+          <% if post_comment.user == current_user %>
+          <div>
+            <%= link_to "削除", blog_blog_comment_path(blog_comment.blog, blog_comment), method: :delete %>
+          </div>
+          <% end %>
+
+        <% end %>
+       <!-- <%# if @blog.favorite_by?(current_user) %>-->
+       <!--   <p>-->
+       <!--     <%#= link_to blog_favorites_path(@blog), method: :delete do %>-->
+       <!--      ♥<%#= @blog.favorites.count %> いいね-->
+       <!--     <%# end %>-->
+       <!--   </p>-->
+      　<!--<%# else %>-->
+       <!--   <p>-->
+       <!--     <%#= link_to blog_favorites_path(@blog), method: :post do %>-->
+       <!--      ♡<%#= @blog.favorites.count %> いいね-->
+       <!--     <%# end %>-->
+       <!--   </p>-->
+       <!-- <%# end %>-->
+
+      </div>
+
+      <div>
+      <%= form_with(model:[@blog, @blog_comment], local: true) do |f| %>
+        <%= f.text_area :comment, rows:'5',placeholder:"コメントをここに" %>
+        <%= f.submit "送信する" %>
+      <% end %>
+      </div>
+
+
+
+
+
+
+      <div class="author-case">
+        <div class="author-image"></div>
+        <div class="author-box">
+          <p class="author-name">By JOHN SMITH / Photographer</p>
+          <p class="author-text">
+            His black and white landscapes, often captured at times<br>
+            of the day and night when the light is fleeting, or in poor<br>
+            weather conditions, such as rain, fog, or snow, are<br>
+            reminiscent of the calm in a storm all with an ethereal<br>
+            quality.
+          </p>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <div class="sidebar">
+    <section class="popular">
+      <h2 class="sidebar-heading common-heading">Popular</h2>
+      <div class="sidebar-contents">
+        <p class="popular-text">To solve old problems,<br>study new species</p>
+        <p class="popular-text">Why Earth may someday<br>look like Mars</p>
+        <p class="popular-text">What will humans look<br>like in 100 years?</p>
+        <p class="popular-text">How to grow a forest<br>in your backyard</p>
+        <p class="popular-text">How humans could evolve<br>to survive in space</p>
+      </div>
+    </section>
+    <section class="instagram">
+      <h2 class="instagram-heading common-heading">Instagram</h2>
+      <div class="sidebar-contents">
+        <div class="instagram-box"></div>
+        <div class="instagram-box"></div>
+        <div class="instagram-box"></div>
+        <div class="instagram-box"></div>
+        <div class="instagram-box"></div>
+        <div class="instagram-box"></div>
+      </div>
+    </section>
+    <section class="categories">
+      <h2 class="categories-heading common-heading">Categories</h2>
+      <div class="sidebar-contents">
+        <p class="categories-text">Technology(15)</p>
+        <p class="categories-text">Business(23)</p>
+        <p class="categories-text">Entertainment(12)</p>
+        <p class="categories-text">Nature(32)</p>
+        <p class="categories-text">Education(9)</p>
+        <p class="categories-text">Adventure(23)</p>
+        <p class="categories-text">Communication(14)</p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <p class="footer-text">© All rights reserved by MM</p>
+</footer>
+
