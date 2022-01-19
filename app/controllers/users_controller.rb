@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @blogs = @user.blog.page(params[:page]).reverse_order
+    @blogs = @user.blogs.page(params[:page]).reverse_order
   end
   
   def edit
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   private 
   
   def user_params
-    params.require(:user).permit(:name, :profile_image)
+    params.require(:user).permit(:name, :profile_image ,:caption )
   end
   
 end
