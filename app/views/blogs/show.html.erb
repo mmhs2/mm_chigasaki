@@ -1,10 +1,45 @@
 
-<main>
-  <section class="single-blog">
-    <h2 class="blog-heading">Blog</h2>
-    <section class="blog-box">
+    <main>
+ <div class="sidebar">
+   <section class="popular">
+     <h2 class="sidebar-heading common-heading">Landscape</h2>
+     <div class="sidebar-contents">
+       <p class popular-text>
+         山
+       </p>
+       <p class popular-text>
+         川
+       </p>
+       <p class popular-text>
+         森
+       </p>
+       <p class popular-text>
+         海
+       </p>
+       <p class popular-text>
+         施設
+       </p>
+     </div>
+   </section>
 
-      <% if @blog.user == current_user %>
+  <section class="categories">
+    <h2 class="categories-heading common-heading">City</h2>
+    <div class="sidebar-contents">
+      <p class="categories-text">茅ヶ崎市(15)</p>
+      <p class="categories-text">平塚市(19)</p>
+      <p class="categories-text">藤沢市(18)</p>
+      <p class="categories-text">鎌倉市(16)</p>
+      <p class="categories-text">大磯町(14)</p>
+      <p class="categories-text">横浜市(13)</p>
+    </div>
+  </section>
+ </div>
+
+ <section class="blog">
+    <h2 class="blog-heading">Blogs</h2>
+
+    <div class="blog-box">
+            <% if @blog.user == current_user %>
         <div>
           <%= link_to"新規投稿", new_blog_path %>
         </div>
@@ -25,7 +60,7 @@
       </div>
       <%= attachment_image_tag @blog, :image %>
       <p class="single-text">
-        <%= @blog.body %>
+        <%= raw(@blog.body.gsub(/\R/, "<br>")) %>
       </p>
       <% if @blog.user == current_user %>
        <%= link_to "編集", edit_blog_path(@blog) %>
@@ -46,11 +81,20 @@
           <% end %>
 
         <% end %>
+
         <% if @blog.favorite_by?(current_user) %>
-          <p><%= link_to blog.favorites.count, blog_favorites_path(blog), method: :delete, remote: true, class: "glyphicon glyphicon-heart" %></p>
-      　<% else %>
-          <p><%= link_to blog.favorites.count, blog_favorites_path(book), method: :post, remote: true, class: "glyphicon glyphicon-heart-empty" %></p>
-        <% end %>
+    　　　<p>
+      　<%= link_to blog_favorites_path(@pblog), method: :delete do %>
+        　♥<%= @blog.favorites.count %> いいね
+      　<% end %>
+    　　</p>
+    　　<% else %>
+    　　　<p>
+      　<%= link_to blog_favorites_path(@blog), method: :post do %>
+        　♡<%= @blog.favorites.count %> いいね
+      　<% end %>
+    　　</p>
+  　　　　<% end %>
 
       </div>
 
@@ -67,42 +111,14 @@
           <p>プロフィール詳細</p>
           <p>@blog.user.nameの他の投稿を見る"</p>
         </div>
-    </section>
-  </section>
 
-  <div class="sidebar">
-    <section class="popular">
-      <h2 class="sidebar-heading common-heading">Popular</h2>
-      <div class="sidebar-contents">
-        <p class="popular-text">To solve old problems,<br>study new species</p>
-        <p class="popular-text">Why Earth may someday<br>look like Mars</p>
-        <p class="popular-text">What will humans look<br>like in 100 years?</p>
-        <p class="popular-text">How to grow a forest<br>in your backyard</p>
-        <p class="popular-text">How humans could evolve<br>to survive in space</p>
-      </div>
-    </section>
-    <section class="instagram">
-      <h2 class="instagram-heading common-heading">Instagram</h2>
-      <div class="sidebar-contents">
-        <div class="instagram-box"></div>
-        <div class="instagram-box"></div>
-        <div class="instagram-box"></div>
-        <div class="instagram-box"></div>
-        <div class="instagram-box"></div>
-        <div class="instagram-box"></div>
-      </div>
-    </section>
-    <section class="categories">
-      <h2 class="categories-heading common-heading">Categories</h2>
-      <div class="sidebar-contents">
-        <p class="categories-text">Technology(15)</p>
-        <p class="categories-text">Business(23)</p>
-        <p class="categories-text">Entertainment(12)</p>
-        <p class="categories-text">Nature(32)</p>
-        <p class="categories-text">Education(9)</p>
-        <p class="categories-text">Adventure(23)</p>
-        <p class="categories-text">Communication(14)</p>
-      </div>
-    </section>
-  </div>
+
+    </div>
+
+ </section>
+
 </main>
+
+
+
+

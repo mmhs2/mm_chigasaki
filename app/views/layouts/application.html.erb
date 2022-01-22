@@ -20,50 +20,39 @@
   </h1>
 
 <div class="social">
-  <i class="fab fa-facebook-square"></i>
-  <i class="fab fa-twitter-square"></i>
-  <i class="fab fa-instagram"></i>
+  <%# if user_signed_in? %>
+  <!--<i class="fab fa-facebook-square"></i>-->
+  <!--<i class="fab fa-twitter-square"></i>-->
+  <!--<i class="fab fa-instagram"></i>-->
+  <%# else %>
+  <%# end %>
 </div>
 
 </header>
 
-  <body>
-    <% if user_signed_in? %>
-<nav>
-  <ul class="nav-list">
+<body>
+ <% if user_signed_in? %>
+  <nav>
+   <ul class="nav-list">
     <li class="nav-list-item"><%= link_to "Home", blogs_path %></li>
     <li class="nav-list-item">About</li>
     <li class="nav-list-item"><%= link_to "マイページ", user_path(current_user.id) %></li>
     <li class="nav-list-item"><%= link_to"ログアウト", destroy_user_session_path, method: :delete %></li>
     <li class="nav-list-item"><%= link_to"新規投稿", new_blog_path %></li>
-  </ul>
-</nav>
-<% else %>
-<nav>
-  <ul class="nav-list">
+   </ul>
+  </nav>
+ <% else %>
+  <nav>
+   <ul class="nav-list">
     <li class="nav-list-item"><%= link_to "Home", blogs_path %></li>
     <li class="nav-list-item">About</li>
     <li class="nav-list-item"><%= link_to"新規登録", new_user_registration_path %></li>
     <li class="nav-list-item"><%= link_to"ログイン", new_user_session_path %></li>
-  </ul>
-  </ul>
-</nav>
-
-
+   </ul>
+  </nav>
 <% end %>
 
-<div class="main-visual">
-  <div class="main-visual-content">
-    <p class="main-visual-text">
-      茅ヶ崎市のおすすめスポットをどんどん共有して<br />
-      皆さんで一緒に茅ヶ崎を盛り上げていきましょう!<br />
-      まだ訪れたことがない方は是非参考にしてください！
-    </p>
-    <p class="main-visual-name">
-      Chigasaki-City
-    </p>
-  </div>
-</div>
+
 
     <%= yield %>
     
