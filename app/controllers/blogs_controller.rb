@@ -14,24 +14,33 @@ class BlogsController < ApplicationController
   end
 
   def create
-    @blog = Blog.new(blog_params)
-    @blog.user_id = current_user.id
+    @blog = current_user.blogs.build(blog_params)
+    tag_list = params[:blog][:tag_ids].split(',')
     if @blog.save
-     redirect_to blog_path(@blog.id)
+      @blog.save_tags(tag_list)
+      flash[:success] = '投稿しました!'
+      redirect_to blog_path(@blog.id)
     else
-     render :new
+      render :new
     end
   end
 
 
   def edit
     @blog = Blog.find(params[:id])
+    @tag_list =@blog.tags.pluck(:name).join(",")
   end
 
   def update
-    blog = Blog.find(params[:id])
-    blog.update(blog_params)
-    redirect_to blog_path(blog)
+    @blog = Blog.find(params[:id])
+    tag_list = params[:blog][:tag_ids].split(',')
+    if @blog.update_attributes(blog_params)
+      @blog.save_tags(tag_list)
+      flash[:success] = '投稿を編集しました‼'
+      redirect_to blog_path(@blog.id)
+    else
+     render 'edit'
+    end
   end
 
   def destroy

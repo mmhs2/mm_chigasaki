@@ -60,6 +60,11 @@
        <section class="blog-text">
 
          <p class="category"><%= blog.place.name %></p>
+         
+         <% blog.tags.each do |tag| %>
+         <%= tag.name %>
+         <% end %>
+         
          <p><%= raw(blog.body.gsub(/\R/, "<br>")) %></p>
          <p>投稿者：  <%= link_to  blog.user.name, user_path(blog.user.id) %><p>
          <p><%= link_to "投稿詳細", blog_path(blog.id) %></p>

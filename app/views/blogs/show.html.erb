@@ -51,6 +51,11 @@
       </h3>
 
       <div class="blog-box-content">
+        
+        <% @blog.tags.each do |tag| %>
+   　　　<%= tag.name %>
+　　　　<% end %>
+        
         <p class="category">
          <%= @blog.place.name %>
         </p>
