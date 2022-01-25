@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'places/index'
+  get 'places/edit'
+  get 'places/create'
+  get 'places/update'
   get 'users/show'
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -8,5 +12,5 @@ Rails.application.routes.draw do
     resources :blog_comments,only: [:create, :destroy]
   end
   resources :users, only: [:show, :edit, :update]
-  
+  resources :places, only: [:index, :create, :edit, :update]
 end

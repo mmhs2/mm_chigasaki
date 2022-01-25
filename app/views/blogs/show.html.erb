@@ -52,11 +52,14 @@
 
       <div class="blog-box-content">
         <p class="category">
-         <%= @blog.category %>
+         <%= @blog.place.name %>
+        </p>
         </p>
         <p class="blog-date">
          <%= @blog.created_at.strftime('%Y/%m/%d') %>
         </p>
+        
+        
       </div>
       <%= attachment_image_tag @blog, :image %>
       <p class="single-text">
@@ -84,7 +87,7 @@
 
         <% if @blog.favorite_by?(current_user) %>
     　　　<p>
-      　<%= link_to blog_favorites_path(@pblog), method: :delete do %>
+      　<%= link_to blog_favorites_path(@blog), method: :delete do %>
         　♥<%= @blog.favorites.count %> いいね
       　<% end %>
     　　</p>

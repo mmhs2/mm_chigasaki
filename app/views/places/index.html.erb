@@ -1,0 +1,26 @@
+<div class="container my-4">
+  <h3>場所の一覧・追加</h3>
+  <br>
+  <div class="row ml-1">
+    <%= form_with model:@place, url: places_path, local:true do |f| %>
+        <%= f.label:場所名 %>
+        <%= f.text_field :name %>
+        <%= f.submit '新規登録', class: 'btn btn-success' %>
+    <% end %>
+  </div><br>
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table">
+        <tr>
+          <th class="bg-light">場所</th>
+        </tr>
+          <% @places.each do |place| %>
+        <tr>
+          <td><%= place.name %></td>
+          <td class="col-md-3"><%= link_to "編集する", edit_place_path(place), class: "glyphicon glyphicon-pencil btn btn-success" %></td>
+        </tr>
+          <% end %>
+      </table>
+    </div>
+  </div>
+</div>

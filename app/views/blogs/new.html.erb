@@ -20,11 +20,11 @@
     <td class="col-md-2"><%= f.attachment_field :image %></td></tr>
 
     <tr><th class="col-md-2"><%= f.label:タイトル, class:"col-xs-12" %></th>
-    <td class="col-md-2"><%= f.text_field :title %></th>
-
-    <tr><th class="col-md-2"><%= f.label:カテゴリー, class:"col-xs-12" %></th>
-    <td class="col-md-2"><%= f.text_field :category %></th>
-
+    <td class="col-md-2"><%= f.text_field :title %></td>
+    
+    <tr><th class="col-md-2"><%= f.label:場所, class:"col-xs-12" %></th>
+    <td class="select_field", "col-md-2"><%= f.collection_select :place_id, Place.all, :id,:name,{prompt: "--選択してください--"} %></td>
+    
     <tr><th class="col-md-2"><%= f.label:本文, class:"col-xs-12" %></th>
     <td class="col-md-2"><%= f.text_area :body, rows: 10, cols: 70 %></th>
 

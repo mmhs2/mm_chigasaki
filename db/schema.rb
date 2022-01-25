@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_19_065733) do
+ActiveRecord::Schema.define(version: 2022_01_25_074544) do
 
   create_table "blog_comments", force: :cascade do |t|
     t.text "comment"
@@ -22,17 +22,23 @@ ActiveRecord::Schema.define(version: 2022_01_19_065733) do
 
   create_table "blogs", force: :cascade do |t|
     t.string "title"
-    t.string "category"
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_id"
     t.string "user_id"
+    t.integer "place_id"
   end
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
     t.integer "blog_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "places", force: :cascade do |t|
+    t.text "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

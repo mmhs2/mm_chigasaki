@@ -59,7 +59,7 @@
        <div class="blog-image"><%= link_to blog_path(blog.id) do %><%= attachment_image_tag blog, :image %><% end %></div>
        <section class="blog-text">
 
-         <p class="category"><%= blog.category %></p>
+         <p class="category"><%= blog.place.name %></p>
          <p><%= raw(blog.body.gsub(/\R/, "<br>")) %></p>
          <p>投稿者：  <%= link_to  blog.user.name, user_path(blog.user.id) %><p>
          <p><%= link_to "投稿詳細", blog_path(blog.id) %></p>
