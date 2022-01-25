@@ -14,12 +14,8 @@
   <section class="categories">
     <h2 class="categories-heading common-heading">City</h2>
     <div class="sidebar-contents">
-      <p class="categories-text">茅ヶ崎市(15)</p>
-      <p class="categories-text">平塚市(19)</p>
-      <p class="categories-text">藤沢市(18)</p>
-      <p class="categories-text">鎌倉市(16)</p>
-      <p class="categories-text">大磯町(14)</p>
-      <p class="categories-text">横浜市(13)</p>
+      <% @places.each do |list| %>
+			<p class="categories-text"><%=link_to list.name, search_place_path(place_id: list.id) %><%="(#{list.blogs.count})" %></p><% end %>
     </div>
   </section>
  </div>
@@ -42,11 +38,11 @@
       <div class="blog-box-content">
 
         <% @blog.tags.each do |tag| %>
-        <%= link_to tag.name,search_tag_path(tag_id: tag.id)%><%="(#{tag.blogs.count})" %>
+        <%= link_to tag.name, search_tag_path(tag_id: tag.id)%><%="(#{tag.blogs.count})" %>
 　　　　<% end %>
 
         <p class="category">
-         <%= @blog.place.name %>
+        <%= @blog.place.name %>
         </p>
         </p>
         <p class="blog-date">
@@ -103,9 +99,9 @@
       </div>
 
       <div class="author-case">
-        <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback:"img/no_image.jpg"%></div>
+        <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback:"img/no_image.jpg" %></div>
         <div class="author-box">
-          <p>投稿者：  <%= link_to @blog.user.name, user_path(@blog.user.id) %>の詳細ページへ<p>
+          <p>投稿者：  <%= link_to @blog.user.name, user_path(@blog.user.id) %><p>
         </div>
 
 

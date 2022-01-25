@@ -7,10 +7,11 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create, :destroy]
     resources :blog_comments,only: [:create, :destroy]
   end
-  
+
   resources :users, only: [:show, :edit, :update]
   resources :places, only: [:index, :create, :edit, :update]
-  
+
   get "search_tag" => "blogs#search_tag"
-  
+  get "search_place" => "blogs#search_place"
+
 end

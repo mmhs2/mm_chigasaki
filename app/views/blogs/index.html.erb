@@ -18,20 +18,18 @@
      <div class="sidebar-contents">
 
 　　 <% @tag_list.each do |list|%>
-　　 <p class popular-text><%=link_to list.name,search_tag_path(tag_id: list.id) %><%="(#{list.blogs.count})" %></p><% end %>
-　　 
+　　 <p class="categories-text"><%=link_to list.name, search_tag_path(tag_id: list.id) %><%="(#{list.blogs.count})" %></p><% end %>
+
      </div>
    </section>
 
   <section class="categories">
     <h2 class="categories-heading common-heading">City</h2>
     <div class="sidebar-contents">
-      <p class="categories-text">茅ヶ崎市(15)</p>
-      <p class="categories-text">平塚市(19)</p>
-      <p class="categories-text">藤沢市(18)</p>
-      <p class="categories-text">鎌倉市(16)</p>
-      <p class="categories-text">大磯町(14)</p>
-      <p class="categories-text">横浜市(13)</p>
+
+      <% @places.each do |list| %>
+			<p class="categories-text"><%=link_to list.name, search_place_path(place_id: list.id) %><%="(#{list.blogs.count})" %></p><% end %>
+			
     </div>
   </section>
  </div>
@@ -49,11 +47,11 @@
        <section class="blog-text">
 
          <p class="category"><%= blog.place.name %></p>
-         
+
          <% blog.tags.each do |tag| %>
          <%= tag.name %>
          <% end %>
-         
+
          <p><%= raw(blog.body.gsub(/\R/, "<br>").truncate(50)) %></p>
          <p>投稿者：  <%= link_to  blog.user.name, user_path(blog.user.id) %><p>
          <p><%= link_to "投稿詳細", blog_path(blog.id) %></p>
@@ -61,7 +59,7 @@
        </section>
       </div>
       <% end %>
-      
+
       <div class="pagination pagination-sm justify-content-center">
       <%= paginate @blogs %></div>
 
