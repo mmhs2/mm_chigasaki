@@ -2,23 +2,12 @@
     <main>
  <div class="sidebar">
    <section class="popular">
-     <h2 class="sidebar-heading common-heading">Landscape</h2>
+     <h2 class="sidebar-heading common-heading">Scene</h2>
      <div class="sidebar-contents">
-       <p class popular-text>
-         山(15)
-       </p>
-       <p class popular-text>
-         川(15)
-       </p>
-       <p class popular-text>
-         森(15)
-       </p>
-       <p class popular-text>
-         海(15)
-       </p>
-       <p class popular-text>
-         施設(15)
-       </p>
+
+　　 <% @tag_list.each do |list|%>
+　　 <p class popular-text><%=link_to list.name,search_tag_path(tag_id: list.id) %><%="(#{list.blogs.count})" %></p><% end %>
+　　 
      </div>
    </section>
 
@@ -51,11 +40,11 @@
       </h3>
 
       <div class="blog-box-content">
-        
+
         <% @blog.tags.each do |tag| %>
-   　　　<%= tag.name %>
+        <%= link_to tag.name,search_tag_path(tag_id: tag.id)%><%="(#{tag.blogs.count})" %>
 　　　　<% end %>
-        
+
         <p class="category">
          <%= @blog.place.name %>
         </p>
@@ -63,8 +52,8 @@
         <p class="blog-date">
          <%= @blog.created_at.strftime('%Y/%m/%d') %>
         </p>
-        
-        
+
+
       </div>
       <%= attachment_image_tag @blog, :image %>
       <p class="single-text">
@@ -116,8 +105,7 @@
       <div class="author-case">
         <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback:"img/no_image.jpg"%></div>
         <div class="author-box">
-          <p>プロフィール詳細</p>
-          <p>@blog.user.nameの他の投稿を見る"</p>
+          <p>投稿者：  <%= link_to @blog.user.name, user_path(@blog.user.id) %>の詳細ページへ<p>
         </div>
 
 

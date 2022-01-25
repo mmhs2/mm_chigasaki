@@ -8,6 +8,7 @@ class BlogsController < ApplicationController
   def show
     @blog = Blog.find(params[:id])
     @blog_comment = BlogComment.new
+    @tag_list=Tag.all
   end
 
   def new
@@ -48,6 +49,12 @@ class BlogsController < ApplicationController
     blog = Blog.find(params[:id])
     blog.destroy
     redirect_to blogs_path
+  end
+
+  def search_tag
+    @tag_list=Tag.all
+    @tag=Tag.find(params[:tag_id])
+    @blogs=@tag.blogs.page(params[:page]).per(10)
   end
 
   private

@@ -1,0 +1,40 @@
+<div class="container">
+<h5>タグが<%=@tag.name%>の投稿一覧</h5>
+
+<% @tag_list.each do |list|%>
+<%=link_to list.name,search_tag_path(tag_id: list.id) %>
+<%="(#{list.blogs.count})" %><% end %>
+<% @blogs.each do |blog| %>
+
+<div class="card">
+  <div class="card-body">
+    <h6 class="card-title">
+      <%=link_to blog_path(blog.id) do %><%= blog.title.truncate(25) %>
+      <% end %>
+      
+      <%= link_to  blog.user.name, user_path(blog.user.id) %>
+      
+      
+    </h6>
+  </div>
+</div>
+<% end %>
+
+<div class="pagination pagination-sm justify-content-center">
+       <%= paginate @blogs %></div>
+
+</div>
+
+
+<style>
+.card{
+  padding:0;
+  margin:0;
+  border:none;
+}
+
+h6 {
+  /*線の種類（実線） 太さ 色*/
+  border-bottom: solid 3px black;
+}
+</style>
