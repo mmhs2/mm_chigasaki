@@ -17,7 +17,7 @@
 <div class ="col-md-12">
   <table class="table">
     <tr><th class="col-md-2"><%= f.label:投稿画像, class:"col-md-12" %></th>
-    <td class="col-md-2"><%= f.attachment_field :image %></td></tr>
+    <td class="col-md-2"><%= f.file_field :images, multiple: true %></td></tr>
 
     <tr><th class="col-md-2"><%= f.label:タイトル, class:"col-xs-12" %></th>
     <td class="col-md-2"><%= f.text_field :title %></td>

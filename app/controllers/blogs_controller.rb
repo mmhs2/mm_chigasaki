@@ -39,6 +39,14 @@ class BlogsController < ApplicationController
   def update
     @blog = Blog.find(params[:id])
     tag_list = params[:blog][:tag_ids].split(',')
+    
+    if params[:blog][:image_ids]
+      params[:blog][:image_ids].each do |image_id|
+        image = post.images.find(image_id)
+        image.purge
+      end
+    end
+    
     if @blog.update_attributes(blog_params)
       @blog.save_tags(tag_list)
       flash[:success] = '投稿を編集しました‼'
@@ -47,6 +55,8 @@ class BlogsController < ApplicationController
      render 'edit'
     end
   end
+  
+  
 
   def destroy
     blog = Blog.find(params[:id])
@@ -69,7 +79,7 @@ class BlogsController < ApplicationController
   private
 
   def blog_params
-    params.require(:blog).permit(:image, :title, :place_id, :body)
+    params.require(:blog).permit(:title, :place_id, :body, images: [])
   end
 
 end

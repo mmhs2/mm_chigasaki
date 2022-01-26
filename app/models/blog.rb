@@ -1,6 +1,6 @@
 class Blog < ApplicationRecord
 
-  validates :image, presence: true
+  
   validates :title, presence: true
   validates :body, presence: true
   validates :place, presence: true
@@ -9,6 +9,8 @@ class Blog < ApplicationRecord
   belongs_to :place
   belongs_to :user
   attachment :image
+  has_many_attached :images
+  
   has_many :blog_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 

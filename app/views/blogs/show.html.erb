@@ -51,7 +51,14 @@
 
 
       </div>
-      <%= attachment_image_tag @blog, :image %>
+      
+      
+      <% @blog.images.each do |image| %>
+      <%= image_tag(image, width:100) %>
+      <% end %>
+      
+      
+      
       <p class="single-text">
         <%= raw(@blog.body.gsub(/\R/, "<br>")) %>
       </p>

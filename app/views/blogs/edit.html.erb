@@ -3,7 +3,21 @@
 <%= form_with model:@blog, local: true do |f| %>
   <h4>タイトル</h4>
   <%= f.text_field :title %>
-  <h4>カテゴリー</h4>
+  
+  <h4>写真</h4>
+  <%= f.file_field :images, multiple: true %>
+  
+  <% if @blog.images.present? %>
+    <p>現在登録されている画像（削除するものはチェックしてください）</p>
+    <% @blog.images.each do |image| %>
+      <%= f.check_box :image_ids, {multiple: true}, image.id, false %>
+      <%= image_tag image, size:"100x100" %> <br>
+    <% end %>
+  <% end %>
+  
+  
+  
+  <h4>場所</h4>
   <%= f.collection_select :place_id, Place.all, :id,:name,{prompt: "--選択してください--"} %>
   
   
