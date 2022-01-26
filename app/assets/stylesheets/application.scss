@@ -122,13 +122,13 @@ main {
 }
 
 .blog-heading {
-  border-bottom: 8px solid #f7f7f7;
+  border-bottom: 8px solid #dee2e6;
   text-align: center;
   line-height: 0.6;
 }
 
 .blog-box {
-  padding-top: 50px;
+  padding-top: 25px;
 }
 
 .blog-item {
@@ -140,7 +140,7 @@ main {
 }
 
 .blog-image {
-  size: contain;
+  padding-bottom: 5px;
 }
 
 .blog-text {
@@ -165,6 +165,7 @@ main {
   font-size: 11px;
 }
 
+
 .pagination {
   text-align: center;
   padding-top: 50px;
@@ -182,28 +183,21 @@ main {
 
 .sidebar {
   width: 230px;
+  padding-right: 5px;
 }
-.common-heading {
-  border-bottom: 8px solid #f7f7f7;
-  text-align: center;
+.categories-heading {
+  border-bottom: 8px solid #fce4ec;
+  text-align: left;
   line-height: 0.6;
 }
 .sidebar-contents {
-  padding: 50px 0;
+  padding: 0 0 30px 0 ;
 }
-.popular-text,
 .categories-text {
   padding-bottom: 5px;
-  border-bottom: 1px solid #f7f7f7;
+  border-bottom: 5px;
   margin-bottom: 5px;
 }
-.popular-text:last-child,
-.categories-text:last-child {
-  margin: 0;
-  padding: 0;
-  border: none;
-}
-
 
 footer {
   width: 100%;
@@ -227,7 +221,7 @@ footer {
   width: 100%;
 }
 .single-text {
-  margin: 15px 5px 20px 0;
+  padding: 0 10px 25px 15px ;
   font-size: 15px;
 }
 .author-case {

@@ -1,33 +1,31 @@
-<h1>編集画面</h1>
+<div class="container my-4">
+　<%= form_with model:@blog, local: true do |f| %>
+　<h2 class="blog-heading">Edit Blog</h2>
 
-<%= form_with model:@blog, local: true do |f| %>
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
+  　<div class ="col-md-12">
+   　<table class="table">
+     　<tr><th class="col-md-1">ブログタイトル</th> <td class="col-md-2"><%= f.text_field :title %></td></tr>
+     　<tr><th class="col-md-1">場所</th> <td class="col-md-2"><%= f.collection_select :place_id, Place.all, :id,:name,{prompt: "--選択してください--"} %></td></tr>
+     　<tr><th class="col-md-1">タグ</th> <td class="col-md-2"><%= f.text_field :tag_ids,value: @tag_list, placeholder: "タグをつける。複数つけるには','で区切ってください。" %></td></tr>
+     　<tr><th class="col-md-1">本文</th> <td class="col-md-2"><%= f.text_area :body, rows: 10, cols: 70 %></td></tr>
+     　<tr><th class="col-md-1">追加する画像</th> <td class="col-md-2"><%= f.file_field :images, multiple: true %></td></tr>
+   　</table>
+   　
+   　
+     <% if @blog.images.present? %>
+     <h5>現在登録されている画像（削除するものがあればチェック）</h5>
+       <p>
+          <% @blog.images.each do |image| %>
+          <%= f.check_box :image_ids, {multiple: true}, image.id, false %>
+          <%= image_tag image, size:"150x150" %></p><br>
+         <% end %>
+     <% end %>
+  　 <div class="actions">
+   　  <%= f.submit "変更を保存", class: "btn btn-primary"  %>
+  　 </div><br>
+  　
   
-  <h4>写真</h4>
-  <%= f.file_field :images, multiple: true %>
-  
-  <% if @blog.images.present? %>
-    <p>現在登録されている画像（削除するものはチェックしてください）</p>
-    <% @blog.images.each do |image| %>
-      <%= f.check_box :image_ids, {multiple: true}, image.id, false %>
-      <%= image_tag image, size:"100x100" %> <br>
-    <% end %>
+ 　　</div>
   <% end %>
-  
-  
-  
-  <h4>場所</h4>
-  <%= f.collection_select :place_id, Place.all, :id,:name,{prompt: "--選択してください--"} %>
-  
-  
-  <h4>タグ</h4>
-  <%= f.text_field :tag_ids,value: @tag_list,\
-    placeholder: "タグをつける。複数つけるには','で区切ってください。" %>
-  
-  <h4>本文</h4>
-  <%= f.text_area :body %>
 
-  <%= f.submit "保存" %>
-
-<% end %>
+</div>

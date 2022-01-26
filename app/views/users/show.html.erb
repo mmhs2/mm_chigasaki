@@ -1,8 +1,8 @@
 <div class="container my-5">
 
-<h2 class="blog-heading">＜ <%= @user.name %>　Plofile ＞</h2>
+ <h2 class="blog-heading">Plofile</h2>
  <div>
-  <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, format: 'jpeg', fallback: "img/no_image.jpg" %>
+  <%= attachment_image_tag @user, :profile_image, :fill, 400, 400, format: 'jpeg', fallback: "img/no_image.jpg" %>
 　<br><p>Introduction<br>
 　<%= @user.caption %></p>
 
@@ -11,29 +11,22 @@
   <% end %>
  </div>
 
-<h2 class="blog-heading">Recent Blogs</h2>
-<% @blogs.each do |blog| %>
-<div>
-
-  <h3 class="blog-box-heading">
-        <%= blog.title %>
-      </h3>
-　　　<%= attachment_image_tag blog, :image %>
-      <div class="blog-box-content">
-        <p class="blog-date">
-         <%= blog.created_at.strftime('%Y/%m/%d') %>
-        </p>
+ <h2 class="blog-heading">Recent Blogs</h2>
+  <% @blogs.each do |blog| %>
+    <div>
+      <h4 class="blog-box-heading"><%= link_to blog.title, blog_path(blog) %></h4>
+      <table class="table">
+     　<tr><th class="col-md-1">投稿日</th> <td class="col-md-2"><%= blog.created_at.strftime('%Y/%m/%d') %></td></tr>
+       <tr><th class="col-md-1">本文</th> <td class="col-md-2"><%= blog.body.truncate(40) %></td></tr>
+      </table>
+　　
+      <div class="blog-image">
+         <% blog.images.each do |image| %>
+         <%= image_tag(image, width:100) %>
+         <% end %>
       </div>
-
-      <p class="single-text">
-        <%= blog.body %>
-      </p>
-</div>
-<% end %>
-
-<h3><%= @user.name %></h3>
-  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "img/no_image.jpg" %>
-<p>説明:<%= @user.caption %></p>
+    </div><br><br>
+  <% end %>
 
 <%= paginate @blogs %>
 

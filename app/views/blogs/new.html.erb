@@ -1,7 +1,6 @@
 <div class="container my-4">
-  <div class-"row">
 
-<h1>新規投稿</h1>
+<h2 class="blog-heading">Post Blog</h2><br>
 
 <% if @blog.errors.any? %>
  <%= @blog.errors.count %>件のエラーが発生しました
@@ -16,8 +15,9 @@
 
 <div class ="col-md-12">
   <table class="table">
-    <tr><th class="col-md-2"><%= f.label:投稿画像, class:"col-md-12" %></th>
-    <td class="col-md-2"><%= f.file_field :images, multiple: true %></td></tr>
+
+    <tr><th class="col-md-2"><%= f.label:投稿画像, class:"col-xs-12" %></th>
+    <td class="col-md-2"><%= f.file_field :images, multiple: true %></td>
 
     <tr><th class="col-md-2"><%= f.label:タイトル, class:"col-xs-12" %></th>
     <td class="col-md-2"><%= f.text_field :title %></td>
@@ -25,9 +25,9 @@
     <tr><th class="col-md-2"><%= f.label:場所, class:"col-xs-12" %></th>
     <td class="select_field", "col-md-2"><%= f.collection_select :place_id, Place.all, :id,:name,{prompt: "--選択してください--"} %></td>
     
-    <tr><th class="col-md-2"><%= f.label:タグ, class:"col-xs-12" %></th>
+    <tr><th class="col-md-2"><%= f.label:タグ付け, class:"col-xs-12" %></th>
     <td class="select_field", "col-md-2">
-    <%= f.text_field :tag_ids, class: "form-control", id:'tag_ids', placeholder: "タグをつける。複数つけるには','で区切ってください。"%></td>
+    <%= f.text_field :tag_ids, class: "form-control", id:'tag_ids', placeholder: "タグを複数つける時は　,（カンマ）で区切ってください。【例：海,山,空】"%></td>
 
     <tr><th class="col-md-2"><%= f.label:本文, class:"col-xs-12" %></th>
     <td class="col-md-2"><%= f.text_area :body, rows: 10, cols: 70 %></th>

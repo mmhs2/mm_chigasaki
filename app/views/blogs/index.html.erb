@@ -13,26 +13,22 @@
 
 <main>
  <div class="sidebar">
-   <section class="popular">
-     <h2 class="sidebar-heading common-heading">Scene</h2>
-     <div class="sidebar-contents">
-
-　　 <% @tag_list.each do |list|%>
-　　 <p class="categories-text"><%=link_to list.name, search_tag_path(tag_id: list.id) %><%="(#{list.blogs.count})" %></p><% end %>
-
-     </div>
+   <section class="categories">
+     <h2 class="categories-heading">Scene</h2>
+      <div class="sidebar-contents">
+        <% @tag_list.each do |list|%>
+　　    <p class="categories-text"><%=link_to list.name,search_tag_path(tag_id: list.id) %><%="(#{list.blogs.count})" %></p><% end %>
+      </div>
    </section>
 
-  <section class="categories">
-    <h2 class="categories-heading common-heading">City</h2>
-    <div class="sidebar-contents">
-
-      <% @places.each do |list| %>
-			<p class="categories-text"><%=link_to list.name, search_place_path(place_id: list.id) %><%="(#{list.blogs.count})" %></p><% end %>
-			
-    </div>
-  </section>
- </div>
+   <section class="categories">
+     <h2 class="categories-heading">City</h2>
+     　<div class="sidebar-contents">
+        <% @places.each do |list| %>
+　　    <p class="categories-text"><%=link_to list.name, search_place_path(place_id: list.id) %><%="(#{list.blogs.count})" %></p><% end %>
+       </div>
+   </section>
+  </div>
 
  <section class="blog">
     <h2 class="blog-heading">Recent Blogs</h2>
@@ -40,7 +36,7 @@
     <div class="blog-box">
 
      <% @blogs.each do |blog| %>
-      <h3 class="blog-text-heading"><%= link_to blog.title, blog_path(blog) %></h3><p><%= blog.created_at.strftime('%Y/%m/%d') %></p>
+      <h5 class="blog-text-heading"><%= link_to blog.title, blog_path(blog) %></h5><p><%= blog.created_at.strftime('%Y/%m/%d') %></p>
       <div class="blog-item">
 
        <div class="blog-image">

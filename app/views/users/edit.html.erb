@@ -1,27 +1,20 @@
 <div class="container my-5">
 <%= form_with model:@user, local:true do |f| %>
 
-<h2 class="blog-heading">＜ Edit　Plofile ＞</h2>
-  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback:"img/no_image.jpg"%>
-  
-  <div class="row">
-    <lavel class="col-lg-3">プロフィール画像</label>
-    <div class="col-lg-3"><%= f.attachment_field :profile_image %></div>
-  </div><br>  
-  
-  <div class="row">
-    <lavel class="col-lg-3">名前</label>
-    <div class="col-lg-3"><%= f.text_field :name, autofocus: true, id:"inputName" %></div>
-  </div><br>  
-  
-  <div class="row">
-    <lavel class="col-lg-3">プロフィール</lavel><br>
-    <%= f.text_area :caption,  autofocus: true, id:"inputCaption",placeholder:"プロフィール詳細", rows: 10, cols: 70 %> %>
-  </div><br>  
+<h2 class="blog-heading">Edit　Plofile</h2>
+
+ <div class ="col-md-12">
+   <table class="table">
+     <tr><th class="col-md-1">現在のプロフィール画像</th> <td class="col-md-2"><%= attachment_image_tag @user, :profile_image, :fill, 200, 200, fallback:"img/no_image.jpg"%></td></tr>
+     <tr><th class="col-md-1">プロフィール画像の変更</th> <td class="col-md-2"><%= f.attachment_field :profile_image %></td></tr>
+     <tr><th class="col-md-1">サイト内での表示名</th> <td class="col-md-2"><%= f.text_field :name, autofocus: true, id:"inputName" %></td></tr>
+     <tr><th class="col-md-1">プロフィール</th> <td class="col-md-2"><%= f.text_area :caption,  autofocus: true, id:"inputCaption",placeholder:"プロフィール詳細", rows: 10, cols: 70 %></td></tr>
+   </table>
 
   <div class="actions">
-  <%= f.submit "変更を保存", class: "btn btn-primary"  %>
+   <%= f.submit "変更を保存", class: "btn btn-primary"  %>
   </div><br>
-<% end %>
+   <% end %>
+ </div>
 
 </div>
