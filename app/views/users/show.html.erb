@@ -1,14 +1,15 @@
-<div>
-  <h3><%= @user.name %></h3>
-  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "img/no_image.jpg" %>
-　<p>説明:<%= @user.caption %></p>
-　
+<div class="container my-5">
+
+<h2 class="blog-heading">＜ <%= @user.name %>　Plofile ＞</h2>
+ <div>
+  <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, format: 'jpeg', fallback: "img/no_image.jpg" %>
+　<br><p>Introduction<br>
+　<%= @user.caption %></p>
+
   <% if @user.id == current_user.id %>
     <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
   <% end %>
-
-
-</div>
+ </div>
 
 <h2 class="blog-heading">Recent Blogs</h2>
 <% @blogs.each do |blog| %>
@@ -23,7 +24,7 @@
          <%= blog.created_at.strftime('%Y/%m/%d') %>
         </p>
       </div>
-      
+
       <p class="single-text">
         <%= blog.body %>
       </p>
@@ -35,3 +36,5 @@
 <p>説明:<%= @user.caption %></p>
 
 <%= paginate @blogs %>
+
+</div>

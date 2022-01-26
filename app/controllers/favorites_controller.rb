@@ -1,18 +1,19 @@
 class FavoritesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :set_post
 
- def create
-   blog = Blog.find(params[:blog_id])
-   favorite = current_user.favorites.new(blog_id: blog.id)
-   favorite.save
-   redirect_to blog_path(blog)
- end
+  def create
+    @favorite = Favorite.create(user_id: current_user.id, blog_id: @blog.id)
+    @favorite.save
+  end
 
- def destroy
-   blog = Blog.find(params[:blog_id])
-   favorite = current_user.favorites.new(blog_id: blog.id)
-   favorite.destroy
-   redirect_to blog_path(blog)
- end
+  def destroy
+    @favorite = Favorite.find_by(user_id: current_user.id, blog_id: @blog.id)
+    @favorite.destroy
+  end
 
+  private
+  def set_post
+    @blog = Blog.find(params[:blog_id])
+  end
+  
 end

@@ -41,7 +41,7 @@ header {
   margin: 0 auto;
   text-align: center;
   position: relative;
-  background-color: #FFFFDD;
+  background-color: #d78c42;;
   
 }
 
@@ -204,39 +204,6 @@ main {
   border: none;
 }
 
-.instagram .sidebar-contents {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.instagram-box {
-  width: 110px;
-  padding-top: 110px;
-  background-size: cover;
-  background-position: center;
-  margin-bottom: 10px;
-}
-.instagram-box:nth-child(odd) {
-  margin-right: 10px;
-}
-.instagram-box:nth-child(1) {
-  background-image: url(img/img/chigasaki.jpg);
-}
-.instagram-box:nth-child(2) {
-  background-image: url(img/img/chigasaki.jpg);
-}
-.instagram-box:nth-child(3) {
-  background-image: url(img/img/chigasaki.jpg);
-}
-.instagram-box:nth-child(4) {
-  background-image: url(img/img/chigasaki.jpg);
-}
-.instagram-box:nth-child(5) {
-  background-image: url(img/img/chigasaki.jpg);
-}
-.instagram-box:nth-child(6) {
-  background-image: url(img/img/chigasaki.jpg);
-}
 
 footer {
   width: 100%;

@@ -1,5 +1,5 @@
-
-    <main>
+<main>
+  
  <div class="sidebar">
    <section class="popular">
      <h2 class="sidebar-heading common-heading">Scene</h2>
@@ -7,43 +7,39 @@
 
 　　 <% @tag_list.each do |list|%>
 　　 <p class popular-text><%=link_to list.name,search_tag_path(tag_id: list.id) %><%="(#{list.blogs.count})" %></p><% end %>
-　　 
+
      </div>
    </section>
 
-  <section class="categories">
-    <h2 class="categories-heading common-heading">City</h2>
-    <div class="sidebar-contents">
-      <% @places.each do |list| %>
-			<p class="categories-text"><%=link_to list.name, search_place_path(place_id: list.id) %><%="(#{list.blogs.count})" %></p><% end %>
-    </div>
-  </section>
+   <section class="categories">
+     <h2 class="categories-heading common-heading">City</h2>
+      <div class="sidebar-contents">
+       <% @places.each do |list| %>
+			 <p class="categories-text"><%=link_to list.name, search_place_path(place_id: list.id) %><%="(#{list.blogs.count})" %></p><% end %>
+      </div>
+   </section>
  </div>
 
  <section class="blog">
     <h2 class="blog-heading">Blogs</h2>
 
     <div class="blog-box">
-            <% if @blog.user == current_user %>
-        <div>
-          <%= link_to"新規投稿", new_blog_path %>
-        </div>
-      <% end %>
-
 
       <h3 class="blog-box-heading">
         <%= @blog.title %>
       </h3>
 
       <div class="blog-box-content">
-
+        
+        <strong>
         <% @blog.tags.each do |tag| %>
         <%= link_to tag.name, search_tag_path(tag_id: tag.id)%><%="(#{tag.blogs.count})" %>
 　　　　<% end %>
-
-        <p class="category">
+        </strong><br><br>
+        
+        <strong>
         <%= @blog.place.name %>
-        </p>
+        </strong>
         </p>
         <p class="blog-date">
          <%= @blog.created_at.strftime('%Y/%m/%d') %>
@@ -51,14 +47,14 @@
 
 
       </div>
-      
-      
+
+
       <% @blog.images.each do |image| %>
       <%= image_tag(image, width:100) %>
       <% end %>
-      
-      
-      
+
+
+
       <p class="single-text">
         <%= raw(@blog.body.gsub(/\R/, "<br>")) %>
       </p>
@@ -70,11 +66,11 @@
       <div>
       <p>コメント件数:<%= @blog.blog_comments.count %></p>
         <% @blog.blog_comments.each do |blog_comment| %>
-          <p><%= attachment_image_tag post_image.user, :profile_image, :fill, 60, 60, fallback:"no-image.jpg"%></p>
+          <p><%= attachment_image_tag @blog.user, :profile_image, :fill, 60, 60, fallback:"img/no_image.jpg"%></p>
           <%= blog_comment.user.name %>
-          <%= blog_comment.created_at.strftime('%Y/%m/%d') %><%= blog_comment.comment %>
+          <%= blog_comment.created_at.strftime('%Y/%m/%d') %><%= blog_comment.comment.gsub(/\R/, "<br>") %>
 
-          <% if post_comment.user == current_user %>
+          <% if blog_comment.user == current_user %>
           <div>
             <%= link_to "削除", blog_blog_comment_path(blog_comment.blog, blog_comment), method: :delete %>
           </div>
@@ -82,25 +78,15 @@
 
         <% end %>
 
-        <% if @blog.favorite_by?(current_user) %>
-    　　　<p>
-      　<%= link_to blog_favorites_path(@blog), method: :delete do %>
-        　♥<%= @blog.favorites.count %> いいね
-      　<% end %>
-    　　</p>
-    　　<% else %>
-    　　　<p>
-      　<%= link_to blog_favorites_path(@blog), method: :post do %>
-        　♡<%= @blog.favorites.count %> いいね
-      　<% end %>
-    　　</p>
-  　　　　<% end %>
+        <div id="favorite_area_<%= @blog.id %>", class="favoriteArea">
+        <%= render partial: "favorites/favorite", locals: { blog: @blog } %>
+        </div>
 
       </div>
 
       <div>
       <%= form_with(model:[@blog, @blog_comment], local: true) do |f| %>
-        <%= f.text_area :comment, rows:'5',placeholder:"コメントをここに" %>
+        <%= f.text_area :comment, rows:'5',placeholder:"コメントをここに", rows: 10, cols: 70  %>
         <%= f.submit "送信する" %>
       <% end %>
       </div>

@@ -1,12 +1,27 @@
-<h2>プロフィール編集</h2>
+<div class="container my-5">
 <%= form_with model:@user, local:true do |f| %>
-  <label for="inputName">Name</label>
-  <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
+
+<h2 class="blog-heading">＜ Edit　Plofile ＞</h2>
   <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback:"img/no_image.jpg"%>
-  <label for="inputimage">ProfileImage</label>
-  <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
-  <label for="inputIntroduction">Caption</label>
-  <%= f.text_area :caption,  autofocus: true, id:"inputCaption",placeholder:"プロフィール詳細" %><br>
   
-  <%= f.submit "変更を保存" %>
+  <div class="row">
+    <lavel class="col-lg-3">プロフィール画像</label>
+    <div class="col-lg-3"><%= f.attachment_field :profile_image %></div>
+  </div><br>  
+  
+  <div class="row">
+    <lavel class="col-lg-3">名前</label>
+    <div class="col-lg-3"><%= f.text_field :name, autofocus: true, id:"inputName" %></div>
+  </div><br>  
+  
+  <div class="row">
+    <lavel class="col-lg-3">プロフィール</lavel><br>
+    <%= f.text_area :caption,  autofocus: true, id:"inputCaption",placeholder:"プロフィール詳細", rows: 10, cols: 70 %> %>
+  </div><br>  
+
+  <div class="actions">
+  <%= f.submit "変更を保存", class: "btn btn-primary"  %>
+  </div><br>
 <% end %>
+
+</div>

@@ -1,0 +1,10 @@
+<% if current_user.already_favorited?(blog) %>
+  <%= link_to blog_favorites_path(blog), method: :delete, class: "goodLink", remote: true, data: {"turbolinks" => false}  do %>
+    <i class="fas fa-heart"></i>
+  <% end %>
+<% else %>
+  <%= link_to blog_favorites_path(blog,blog.favorites), method: :post, class: "goodLink", remote: true, data: {"turbolinks" => false}  do %>
+    <i class="far fa-heart"></i>
+  <% end %>
+<% end %>
+<p class="favoriteCount"><%= blog.favorites.count %></p>
