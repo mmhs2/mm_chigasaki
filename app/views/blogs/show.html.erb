@@ -1,6 +1,6 @@
 <main>
-
- <div class="sidebar">
+  <div class="sidebar">
+    
    <section class="categories">
      <h2 class="categories-heading">Scene</h2>
       <div class="sidebar-contents">
@@ -16,10 +16,9 @@
 　　    <p class="categories-text"><%=link_to list.name, search_place_path(place_id: list.id) %><%="(#{list.blogs.count})" %></p><% end %>
        </div>
    </section>
- </div>
+  </div>
 
- <section class="blog">
-    <h2 class="blog-heading">Blogs</h2>
+ <section class="blog">   <h2 class="blog-heading">Blogs</h2>
 
      <div class="blog-box">
        <h4 class="blog-box-heading"><%= @blog.title %></h4>
@@ -65,7 +64,7 @@
       
         <% @blog.blog_comments.each do |blog_comment| %>
            <div><%= blog_comment.comment.gsub(/\R/, "<br>") %></div>
-           <div>＜コメント＞投稿者：<%= blog_comment.user.name.truncate(8) %>  　　投稿日：<%= blog_comment.created_at.strftime('%Y/%m/%d') %><div>
+           <div>＜コメント＞投稿者：<%= blog_comment.user.name.truncate(8) %>  　　投稿日：<%= blog_comment.created_at.strftime('%Y/%m/%d') %></div>
           <% if blog_comment.user == current_user %>
            <div><%= link_to "コメントの削除", blog_blog_comment_path(blog_comment.blog, blog_comment), method: :delete %></div>
           <% end %><br>
@@ -84,14 +83,8 @@
         <td class="col-md-2"><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback:"img/no_image.jpg" %></td></tr>
       </table>
 
-
-
-    </div>
-
  </section>
 
 </main>
-
-
 
 

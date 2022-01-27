@@ -1,6 +1,6 @@
 class Blog < ApplicationRecord
 
-  
+
   validates :title, presence: true
   validates :body, presence: true
   validates :place, presence: true
@@ -10,7 +10,7 @@ class Blog < ApplicationRecord
   belongs_to :user
   attachment :image
   has_many_attached :images
-  
+
   has_many :blog_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
@@ -28,7 +28,7 @@ class Blog < ApplicationRecord
     self.tags << blog_tag
    end
   end
-  
+
   def save_tags(saveblog_tags)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
     old_tags = current_tags - saveblog_tags
@@ -43,8 +43,5 @@ class Blog < ApplicationRecord
       self.tags << blog_tag
     end
   end
-  
-  
-
 
 end

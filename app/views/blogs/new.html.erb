@@ -1,4 +1,4 @@
-<div class="container my-4">
+<div class="container my-5">
 
 <h2 class="blog-heading">Post Blog</h2><br>
 
@@ -13,7 +13,7 @@
 
 <%= form_with model:@blog, local:true do |f| %>
 
-<div class ="col-md-12">
+ <div class ="col-md-12">
   <table class="table">
 
     <tr><th class="col-md-2"><%= f.label:投稿画像, class:"col-xs-12" %></th>
@@ -35,5 +35,6 @@
   <%= f.submit "投稿" %>
   <% end %>
   </table>
-</div>
+ </div>
 
+</div>

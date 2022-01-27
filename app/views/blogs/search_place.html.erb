@@ -1,5 +1,6 @@
 <main>
-　<div class="sidebar">
+  <div class="sidebar">
+    
    <section class="categories">
      <h2 class="categories-heading">Scene</h2>
       <div class="sidebar-contents">
@@ -15,10 +16,10 @@
 　　    <p class="categories-text"><%=link_to list.name, search_place_path(place_id: list.id) %><%="(#{list.blogs.count})" %></p><% end %>
        </div>
    </section>
- </div>
+  </div>
 
  <section class="blog">
-    <h2 class="blog-heading"><%=@place.name%>の投稿一覧</h2>
+     <h2 class="blog-heading"><%=@place.name%>の投稿一覧</h2>
       <% @blogs.each do |blog| %>
       <div class="card">
         <div class="card-body">
@@ -32,10 +33,9 @@
       </div>
       <% end %>
       <%= paginate @blogs %>
-  </section>
+ </section>
+
 </main>
-
-
 
 <style>
 .card{
