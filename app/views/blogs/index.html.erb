@@ -12,7 +12,7 @@
 </div>
 
 <main>
- <div class="sidebar">
+  <div class="sidebar">
    <section class="categories">
      <h2 class="categories-heading">Scene</h2>
       <div class="sidebar-contents">
@@ -32,37 +32,29 @@
 
  <section class="blog">
     <h2 class="blog-heading">Recent Blogs</h2>
-
-    <div class="blog-box">
-
-     <% @blogs.each do |blog| %>
-      <h5 class="blog-text-heading"><%= link_to blog.title, blog_path(blog) %></h5><p><%= blog.created_at.strftime('%Y/%m/%d') %></p>
-      <div class="blog-item">
-
-       <div class="blog-image">
-         <% blog.images.each do |image| %>
-         <%= image_tag(image, width:100) %>
-         <% end %></div>
-       <section class="blog-text">
-
-         <p class="category"><%= blog.place.name %></p>
-
-         <% blog.tags.each do |tag| %>
-         <%= tag.name %>
-         <% end %>
-
-         <p><%= raw(blog.body.gsub(/\R/, "<br>").truncate(50)) %></p>
-         <p>投稿者：  <%= link_to  blog.user.name, user_path(blog.user.id) %><p>
+    
+    <% @blogs.each do |blog| %>
+      <div class="blog-box">
+      　<h4 class="blog-box-heading"><%= link_to blog.title, blog_path(blog) %></h4>
+      　　<table class="table">
+    　 　  　<tr><th class="col-md-1">投稿者</th> <td class="col-md-2"><%= link_to  blog.user.name, user_path(blog.user.id) %></td></tr>
+     　　　<tr><th class="col-md-1">投稿日</th> <td class="col-md-2"><%= blog.created_at.strftime('%Y/%m/%d') %></td></tr>
+     　     <tr><th class="col-md-1">場所</th> <td class="col-md-2"><%= blog.place.name %></td></tr>
+     　     <tr><th class="col-md-1">関連タグ</th> <td class="col-md-2"><% blog.tags.each do |tag| %><%= tag.name %>  <% end %></td></tr>
+     　     <tr><th class="col-md-1">いいね ♥<%= blog.favorites.count %></th> <td class="col-md-2"><%= link_to "#{blog.blog_comments.count} コメント", blog_path(blog.id) %></td></tr>
+           <tr><th class="col-md-1">本文</th> <td class="col-md-2"><%= raw(blog.body.gsub(/\R/, "<br>").truncate(50)) %></td></tr>
+          </table>
+　　
+         <div class="blog-image">
+          <% blog.images.each do |image| %>
+          <%= image_tag(image, width:100) %>
+          <% end %>
+         </div>
          <p><%= link_to "投稿詳細", blog_path(blog.id) %></p>
-         <p class="favoriteCount">♥<%= blog.favorites.count %></p>
-         <p><%= link_to "#{blog.blog_comments.count} コメント", blog_path(blog.id) %></p>
-       </section>
-      </div>
-      <% end %>
-      
-      <%= paginate @blogs %>
-      
-    </div>
+      </div><br><br>
+    <% end %>
+    
+    <%= paginate @blogs %>
 
  </section>
 

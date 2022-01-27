@@ -4,6 +4,7 @@
 <% @place_list.each do |list|%>
 <%=link_to list.name,search_place_path(place_id: list.id) %>
 <%="(#{list.blogs.count})" %><% end %>
+
 <% @blogs.each do |blog| %>
 
 <div class="card">
@@ -13,7 +14,7 @@
       <% end %>
 
       <%= link_to  blog.user.name, user_path(blog.user.id) %>
-
+      
 
     </h6>
   </div>
