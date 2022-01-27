@@ -1,30 +1,40 @@
-<div class="container">
-<h5>タグが<%=@tag.name%>の投稿一覧</h5>
+<main>
+　<div class="sidebar">
+   <section class="categories">
+     <h2 class="categories-heading">Scene</h2>
+      <div class="sidebar-contents">
+        <% @tag_list.each do |list|%>
+　　    <p class="categories-text"><%=link_to list.name,search_tag_path(tag_id: list.id) %><%="(#{list.blogs.count})" %></p><% end %>
+      </div>
+   </section>
 
-<% @tag_list.each do |list|%>
-<%=link_to list.name,search_tag_path(tag_id: list.id) %>
-<%="(#{list.blogs.count})" %><% end %>
-<% @blogs.each do |blog| %>
+   <section class="categories">
+     <h2 class="categories-heading">City</h2>
+     　<div class="sidebar-contents">
+        <% @places.each do |list| %>
+　　    <p class="categories-text"><%=link_to list.name, search_place_path(place_id: list.id) %><%="(#{list.blogs.count})" %></p><% end %>
+       </div>
+   </section>
+ </div>
 
-<div class="card">
-  <div class="card-body">
-    <h6 class="card-title">
-      <%=link_to blog_path(blog.id) do %><%= blog.title.truncate(25) %>
-      <% end %>
-      
-      <%= link_to  blog.user.name, user_path(blog.user.id) %>
-      
-      
-    </h6>
-  </div>
-</div>
-<% end %>
-
-<div class="pagination pagination-sm justify-content-center">
-       <%= paginate @blogs %></div>
-
-</div>
-
+ <section class="blog">
+   <h2 class="blog-heading">タグが「<%=@tag.name%>」の投稿一覧</h2>
+   <% @blogs.each do |blog| %>
+     <div class="card">
+       <div class="card-body">
+         <h6 class="card-title">
+           <%=link_to blog_path(blog.id) do %><%= blog.title.truncate(25) %><% end %>
+           投稿者：<%= link_to  blog.user.name, user_path(blog.user.id) %>
+           いいね ♥<%= blog.favorites.count %>
+           コメント数<%= blog.blog_comments.count %>
+         </h6>
+       </div>
+     </div>
+    <% end %>
+    
+    <%= paginate @blogs %></div>
+  </section>
+</main>
 
 <style>
 .card{

@@ -14,10 +14,13 @@
 
 <header>
   <h1 class="heading">
-    <a href="index.html">
-      WELCOME-TO-SHONAN-CHIGASAKI<br />
-      ようこそ湘南茅ヶ崎へ！
+    <a class="navbar-brand"><%= link_to blogs_path do %>
+      <%= image_tag "img/japan.jpg", :width => '100', :height => '100' %><% end %></a>
+    <a>
+      WELCOME-TO-SHONAN-CHIGASAKI
     </a>
+    <a class="navbar-brand"><%= link_to blogs_path do %>
+      <%= image_tag "img/japan.jpg", :width => '100', :height => '100' %><% end %></a>
   </h1>
 
 <div class="social">
@@ -36,7 +39,7 @@
   <nav>
    <ul class="nav-list">
     <li class="nav-list-item"><%= link_to "Home", blogs_path %></li>
-    <li class="nav-list-item">About</li>
+    <li class="nav-list-item"><%= link_to "About", blog_about_path %></li>
     <li class="nav-list-item"><%= link_to "マイページ", user_path(current_user.id) %></li>
     <li class="nav-list-item"><%= link_to"ログアウト", destroy_user_session_path, method: :delete %></li>
     <li class="nav-list-item"><%= link_to"新規投稿", new_blog_path %></li>
@@ -46,7 +49,7 @@
   <nav>
    <ul class="nav-list">
     <li class="nav-list-item"><%= link_to "Home", blogs_path %></li>
-    <li class="nav-list-item">About</li>
+    <li class="nav-list-item"><%= link_to "About", blog_about_path %></li>
     <li class="nav-list-item"><%= link_to"新規登録", new_user_registration_path %></li>
     <li class="nav-list-item"><%= link_to"ログイン", new_user_session_path %></li>
    </ul>
