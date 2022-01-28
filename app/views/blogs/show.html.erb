@@ -75,7 +75,7 @@
 
         <% @blog.blog_comments.each do |blog_comment| %>
            <div><%= blog_comment.comment.gsub(/\R/, "<br>") %></div>
-           <div>＜コメント＞投稿者：<%= blog_comment.user.name.truncate(8) %>  　　投稿日：<%= blog_comment.created_at.strftime('%Y/%m/%d') %></div>
+           <div>＜コメント＞投稿者：<%= link_to blog_comment.user.name.truncate(8), user_path(blog_comment.user.id) %>  　　投稿日：<%= blog_comment.created_at.strftime('%Y/%m/%d') %></div>
           <% if blog_comment.user == current_user %>
            <div><%= link_to "コメントの削除", blog_blog_comment_path(blog_comment.blog, blog_comment), method: :delete %></div>
           <% end %><br>
