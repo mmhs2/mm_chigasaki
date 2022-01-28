@@ -10,8 +10,8 @@
      　<tr><th class="col-md-1">本文</th> <td class="col-md-2"><%= f.text_area :body, rows: 10, cols: 70 %></td></tr>
      　<tr><th class="col-md-1">追加する画像</th> <td class="col-md-2"><%= f.file_field :images, multiple: true %></td></tr>
    　</table>
-   　
-   　
+
+
      <% if @blog.images.present? %>
      <h5>現在登録されている画像（削除するものがあればチェック）</h5>
        <p>
@@ -23,8 +23,8 @@
   　 <div class="actions">
    　  <%= f.submit "変更を保存", class: "btn btn-primary"  %>
   　 </div><br>
-  　
-  
+
+
  　　</div>
   <% end %>
 
