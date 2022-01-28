@@ -6,7 +6,9 @@
 
 　<p><h4><%= @user.name %></h4></p>
 　<p>Introduction<br>
-　<%= raw(@user.caption.gsub(/\R/, "<br>")) %></p>
+
+　<p><% if @user.caption != [] %><%= @user.caption %><% end %></p>
+
 　<div class="blog-image">
   <% @user.images.each do |image| %>
   <%= image_tag(image, width:200) %>
@@ -21,6 +23,7 @@
  </div><br>
 
  <h2 class="blog-heading">Recent Blogs</h2><br>
+ <h5>ブログ投稿数：<%= @user.blogs.where('created_at > ?', Date.today).count %></h5><br>
   <% @blogs.each do |blog| %>
     <div>
       <h4 class="blog-box-heading"><%= link_to blog.title, blog_path(blog) %></h4>

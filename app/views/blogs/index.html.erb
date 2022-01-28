@@ -14,14 +14,16 @@
 <main>
   <div class="sidebar">
    <section class="categories">
-     <h2 class="categories-heading">Brog Search</h2>
+     <h2 class="categories-heading">Search</h2>
       <div class="sidebar-contents">
-        <%= form_with(url: search_blogs_path, local: true, method: :get, class: "search-form") do |form| %>
-        <%= form.text_field :keyword, placeholder: "投稿を検索する", class: "search-input" %>
-        <%= form.submit "検索", class: "search-btn" %>
+        <%= form_with url: search_path, local: true, method: :get do |f| %>
+        <%= f.text_field :word %><br><br>
+        <%= f.select :range, options_for_select([['ユーザー'], ['ブログ']]) %>
+        <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backword_match"], ["部分一致","partial_match"]]) %><br><br>
+        <%= f.submit "検索", class: "btn btn-primary" %>
         <% end %>
       </div>
-   </section>  
+   </section>
 
    <section class="categories">
      <h2 class="categories-heading">Scene</h2>
@@ -42,7 +44,7 @@
 
  <section class="blog">
     <h2 class="blog-heading">Recent Blogs</h2>
-    
+
     <% @blogs.each do |blog| %>
       <div class="blog-box">
       　<h4 class="blog-box-heading"><%= link_to blog.title, blog_path(blog) %></h4>
@@ -54,7 +56,7 @@
      　     <tr><th class="col-md-1">いいね ♥<%= blog.favorites.count %></th> <td class="col-md-2"><%= blog.blog_comments.count %>コメント</td></tr>
            <tr><th class="col-md-1">本文</th> <td class="col-md-2"><%= raw(blog.body.gsub(/\R/, "<br>").truncate(50)) %></td></tr>
           </table>
-　　
+
          <div class="blog-image">
           <% blog.images.each do |image| %>
           <%= image_tag(image, width:100) %>
@@ -63,7 +65,7 @@
          <p><%= link_to "投稿詳細", blog_path(blog.id) %></p>
       </div><br><br>
     <% end %>
-    
+
     <%= paginate @blogs %>
 
  </section>

@@ -1,14 +1,16 @@
 <main>
-   <div class="sidebar">
+ <div class="sidebar">
    <section class="categories">
-     <h2 class="categories-heading">Brog Search</h2>
+     <h2 class="categories-heading">Search</h2>
       <div class="sidebar-contents">
-        <%= form_with(url: search_blogs_path, local: true, method: :get, class: "search-form") do |form| %>
-        <%= form.text_field :keyword, placeholder: "投稿を検索する", class: "search-input" %>
-        <%= form.submit "検索", class: "search-btn" %>
+        <%= form_with url: search_path, local: true, method: :get do |f| %>
+        <%= f.text_field :word %><br><br>
+        <%= f.select :range, options_for_select([['ユーザー'], ['ブログ']]) %><br>
+        <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backword_match"], ["部分一致","partial_match"]]) %><br><br>
+        <%= f.submit "検索", class: "btn btn-primary" %>
         <% end %>
       </div>
-   </section>  
+   </section>
   
    <section class="categories">
      <h2 class="categories-heading">Scene</h2>

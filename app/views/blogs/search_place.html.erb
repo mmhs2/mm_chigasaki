@@ -1,19 +1,17 @@
 <main>
-  <div class="sidebar">
-   
+ <div class="sidebar">
    <section class="categories">
-     <h2 class="categories-heading">Brog Search</h2>
+     <h2 class="categories-heading">Search</h2>
       <div class="sidebar-contents">
-        <%= form_with(url: search_blogs_path, local: true, method: :get, class: "search-form") do |form| %>
-        <%= form.text_field :keyword, placeholder: "投稿を検索する", class: "search-input" %>
-        <%= form.submit "検索", class: "search-btn" %>
+        <%= form_with url: search_path, local: true, method: :get do |f| %>
+        <%= f.text_field :word %><br><br>
+        <%= f.select :range, options_for_select([['ユーザー'], ['ブログ']]) %>
+        <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backword_match"], ["部分一致","partial_match"]]) %><br><br>
+        <%= f.submit "検索", class: "btn btn-primary" %>
         <% end %>
       </div>
-   </section> 
-     
-    
-    
-    
+   </section>
+   
    <section class="categories">
      <h2 class="categories-heading">Scene</h2>
       <div class="sidebar-contents">
@@ -38,9 +36,11 @@
         <div class="card-body">
           <h6 class="card-title">
             <%=link_to blog_path(blog.id) do %><%= blog.title.truncate(25) %><% end %>
-            投稿者：<%= link_to  blog.user.name, user_path(blog.user.id) %>
-            いいね ♥<%= blog.favorites.count %>
-            コメント数<%= blog.blog_comments.count %>
+            <div class="serch-reault">
+             投稿者：<%= link_to  blog.user.name, user_path(blog.user.id) %>
+             いいね ♥<%= blog.favorites.count %>
+             コメント数<%= blog.blog_comments.count %>
+            </div>
           </h6>
         </div>
       </div>
@@ -49,16 +49,3 @@
  </section>
 
 </main>
-
-<style>
-.card{
-  padding:0;
-  margin:0;
-  border:none;
-}
-
-h6 {
-  /*線の種類（実線） 太さ 色*/
-  border-bottom: solid 3px black;
-}
-</style>

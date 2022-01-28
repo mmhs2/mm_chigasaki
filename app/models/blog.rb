@@ -6,6 +6,7 @@ class Blog < ApplicationRecord
   validates :place, presence: true
 
 
+
   belongs_to :place
   belongs_to :user
   attachment :image
@@ -44,11 +45,17 @@ class Blog < ApplicationRecord
     end
   end
 
-  def self.search(search)
-    if search != ""
-      Blog.where(['title LIKE(?) OR body LIKE(?)', "%#{search}%", "%#{search}%"])
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @blog = Blog.where(["title LIKE(?) OR body LIKE(?)", "#{word}", "#{word}"])
+    elsif search == "forward_match"
+      @blog = Blog.where(["title LIKE(?) OR body LIKE(?)", "#{word}%", "#{word}%"])
+    elsif search == "backward_match"
+      @blog = Blog.where(["title LIKE(?) OR body LIKE(?)", "%#{word}", "%#{word}"])
+    elsif search == "partial_match"
+      @blog = Blog.where(["title LIKE(?) OR body LIKE(?)", "%#{word}%", "%#{word}%"])
     else
-      Blog.includes(:user).order('created_at DESC')
+      @blog = Blog.all
     end
   end
 

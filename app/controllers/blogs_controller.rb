@@ -1,6 +1,8 @@
 class BlogsController < ApplicationController
 
   def about
+    @tag_list = Tag.all
+    @places = Place.all
   end
 
   def index
@@ -80,11 +82,7 @@ class BlogsController < ApplicationController
     @blogs = @place.blogs.page(params[:page]).per(10)
   end
   
-  def search
-    @blogs = Blog.search(params[:keyword]).page(params[:page]).per(10)
-    @tag_list = Tag.all
-    @places = Place.all
-  end
+  
   
   
   
