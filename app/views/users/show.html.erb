@@ -1,17 +1,19 @@
 <div class="container my-5">
 
  <h2 class="blog-heading">Plofile</h2>
- <div>
+ <div class = "profile">
   <%= attachment_image_tag @user, :profile_image, :fill, 400, 400, format: 'jpeg', fallback: "img/no_image.jpg" %>
-　<br><p>Introduction<br>
-　<%= @user.caption %></p>
+　
+　<p><h4><%= @user.name %></h4></p>
+　<p>Introduction<br>
+　<%= raw(@user.caption.gsub(/\R/, "<br>")) %></p>
 
   <% if @user.id == current_user.id %>
     <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
   <% end %>
- </div>
+ </div><br>
 
- <h2 class="blog-heading">Recent Blogs</h2>
+ <h2 class="blog-heading">Recent Blogs</h2><br>
   <% @blogs.each do |blog| %>
     <div>
       <h4 class="blog-box-heading"><%= link_to blog.title, blog_path(blog) %></h4>

@@ -4,7 +4,7 @@ class BlogsController < ApplicationController
   end
 
   def index
-    @blogs = Blog.page(params[:page]).reverse_order
+    @blogs = Blog.page(params[:page]).per(10)
     @tag_list = Tag.all
     @places = Place.all
   end
