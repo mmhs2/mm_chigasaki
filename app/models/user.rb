@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :blog_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   attachment :profile_image
+  has_many_attached :images
   
   def already_favorited?(blog)
     self.favorites.exists?(blog_id: blog.id)

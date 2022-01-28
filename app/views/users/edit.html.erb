@@ -9,8 +9,20 @@
      <tr><th class="col-md-1">プロフィール画像の変更</th> <td class="col-md-2"><%= f.attachment_field :profile_image %></td></tr>
      <tr><th class="col-md-1">サイト内での表示名</th> <td class="col-md-2"><%= f.text_field :name, autofocus: true, id:"inputName" %></td></tr>
      <tr><th class="col-md-1">プロフィール</th> <td class="col-md-2"><%= f.text_area :caption,  autofocus: true, id:"inputCaption",placeholder:"プロフィール詳細", rows: 10, cols: 70 %></td></tr>
+     <tr><th class="col-md-1">プロフィール紹介画像</th> <td class="col-md-2"><%= f.file_field :images, multiple: true %></td></tr>
    </table>
-
+　　<% if @user.images.present? %>
+     <h5>現在登録されているプロフィール紹介画像（削除するものがあればチェック）</h5>
+       <p>
+          <% @user.images.each do |image| %>
+          <%= f.check_box :image_ids, {multiple: true}, image.id, false %>
+          <%= image_tag image, size:"300x300" %></p><br>
+         <% end %>
+     <% end %>
+　　　
+　　　
+　　　
+　　　
   <div class="actions">
    <%= f.submit "変更を保存", class: "btn btn-primary"  %>
   </div><br>

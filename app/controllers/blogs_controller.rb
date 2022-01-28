@@ -45,7 +45,7 @@ class BlogsController < ApplicationController
     
     if params[:blog][:image_ids]
       params[:blog][:image_ids].each do |image_id|
-        image = post.images.find(image_id)
+        image = @blog.images.find(image_id)
         image.purge
       end
     end
@@ -59,8 +59,6 @@ class BlogsController < ApplicationController
     end
   end
   
-  
-
   def destroy
     blog = Blog.find(params[:id])
     blog.destroy

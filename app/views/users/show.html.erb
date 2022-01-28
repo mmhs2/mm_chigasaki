@@ -3,13 +3,20 @@
  <h2 class="blog-heading">Plofile</h2>
  <div class = "profile">
   <%= attachment_image_tag @user, :profile_image, :fill, 400, 400, format: 'jpeg', fallback: "img/no_image.jpg" %>
-　
+
 　<p><h4><%= @user.name %></h4></p>
 　<p>Introduction<br>
 　<%= raw(@user.caption.gsub(/\R/, "<br>")) %></p>
+　<div class="blog-image">
+  <% @user.images.each do |image| %>
+  <%= image_tag(image, width:200) %>
+  <% end %>
+  </div>
+
+
 
   <% if @user.id == current_user.id %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-primary" %></p>
   <% end %>
  </div><br>
 
@@ -21,7 +28,7 @@
      　<tr><th class="col-md-1">投稿日</th> <td class="col-md-2"><%= blog.created_at.strftime('%Y/%m/%d') %></td></tr>
        <tr><th class="col-md-1">本文</th> <td class="col-md-2"><%= blog.body.truncate(40) %></td></tr>
       </table>
-　　
+
       <div class="blog-image">
          <% blog.images.each do |image| %>
          <%= image_tag(image, width:100) %>
