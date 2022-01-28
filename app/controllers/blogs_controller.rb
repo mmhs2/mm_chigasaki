@@ -82,10 +82,6 @@ class BlogsController < ApplicationController
     @blogs = @place.blogs.page(params[:page]).per(10)
   end
   
-  
-  
-  
-  
   private
 
   def blog_params

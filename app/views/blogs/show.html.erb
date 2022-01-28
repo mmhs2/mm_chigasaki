@@ -11,7 +11,7 @@
         <% end %>
       </div>
    </section>
-  
+
    <section class="categories">
      <h2 class="categories-heading">Scene</h2>
       <div class="sidebar-contents">
@@ -33,18 +33,18 @@
 
      <div class="blog-box">
        <h4 class="blog-box-heading"><%= @blog.title %></h4>
-      
+
        <table class="table">
         <tr><th class="col-md-1">投稿者</th> <td class="col-md-2"><%= link_to @blog.user.name, user_path(@blog.user.id) %></td></tr>
         <tr><th class="col-md-1">投稿日</th> <td class="col-md-2"><%= @blog.created_at.strftime('%Y/%m/%d') %></td></tr>
-        <tr><th class="col-md-1">場所</th> <td class="col-md-2"><%= @blog.place.name %></td></tr>
-        <tr><th class="col-md-1">関連タグ</th> 
+        <tr><th class="col-md-1">場所</th> <td class="col-md-2"><%=link_to @blog.place.name, search_place_path(place_id: @blog.place.id) %></td></tr>
+        <tr><th class="col-md-1">関連タグ</th>
         <td class="col-md-2">
           <% @blog.tags.each do |tag| %>
-          <%= link_to tag.name, search_tag_path(tag_id: tag.id)%><%="(#{tag.blogs.count})" %>
+          <%= link_to tag.name, search_tag_path(tag_id: tag.id)%>
 　　　　  <% end %>
 　　　  </td></tr>
-　　　  
+
 　　　  <% if @blog.user == current_user %>
 　　　  <tr><th class="col-md-1"><%= link_to "投稿の編集", edit_blog_path(@blog), class: "btn btn-primary" %></th>
 　　　  <td class="col-md-2"><%= link_to "投稿の削除", blog_path(@blog), method: :delete, class: "btn btn-primary" %></td></tr>
@@ -55,7 +55,7 @@
      <p class="single-text">
         <%= raw(@blog.body.gsub(/\R/, "<br>")) %>
      </p>
- 
+
       <h4 class="blog-box-heading">投稿写真一覧</h4>
       <% @blog.images.each do |image| %>
       <p class="blog-image"><%= image_tag(image, width:540) %>
@@ -72,7 +72,7 @@
 
       <div>
        <p>コメント件数:<%= @blog.blog_comments.count %></p>
-      
+
         <% @blog.blog_comments.each do |blog_comment| %>
            <div><%= blog_comment.comment.gsub(/\R/, "<br>") %></div>
            <div>＜コメント＞投稿者：<%= blog_comment.user.name.truncate(8) %>  　　投稿日：<%= blog_comment.created_at.strftime('%Y/%m/%d') %></div>
@@ -90,7 +90,7 @@
       </div>
 
 　　　<table class="table">
-        <tr><th class="col-md-1">ブログ投稿者：<%= link_to @blog.user.name, user_path(@blog.user.id) %></th> 
+        <tr><th class="col-md-1">ブログ投稿者：<%= link_to @blog.user.name, user_path(@blog.user.id) %></th>
         <td class="col-md-2"><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback:"img/no_image.jpg" %></td></tr>
       </table>
 
