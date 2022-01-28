@@ -28,10 +28,10 @@
        </div>
    </section>
   </div>
-  
+
   <section class="blog">
    <h2 class="blog-heading">検索結果</h2>
-  　　<h5 class = "seach-result">※該当がない場合、検索ワードを変えてください</h5>  
+  　　<h5 class = "seach-result">※該当がない場合、検索ワードを変えてください</h5>
   　　<% if @range == "User" %>
           <% @users.each do |user| %>
             <div class="card">
@@ -40,7 +40,6 @@
                   <%= attachment_image_tag user, :profile_image, :fill,100, 100, fallback:"img/no_image.jpg"%>
                   <div>ユーザー名：　<%= link_to user.name, user_path(user.id) %></div><br>
                   <div>ブログ投稿数：<%= user.blogs.where('created_at > ?', Date.today).count %></div>
-                  
                 </h6>
               </div>
             </div>

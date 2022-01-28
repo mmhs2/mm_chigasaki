@@ -5,7 +5,7 @@
       <div class="sidebar-contents">
         <%= form_with url: search_path, local: true, method: :get do |f| %>
         <%= f.text_field :word %><br><br>
-        <%= f.select :range, options_for_select([['ユーザー'], ['ブログ']]) %><br>
+        <%= f.select :range, options_for_select([['ユーザー'], ['ブログ']]) %>
         <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backword_match"], ["部分一致","partial_match"]]) %><br><br>
         <%= f.submit "検索", class: "btn btn-primary" %>
         <% end %>
@@ -29,7 +29,8 @@
    </section>
   </div>
 
- <section class="blog">   <h2 class="blog-heading">Blogs</h2>
+ <section class="blog">   
+ 　<h2 class="blog-heading">Blogs</h2>
 
      <div class="blog-box">
        <h4 class="blog-box-heading"><%= @blog.title %></h4>
