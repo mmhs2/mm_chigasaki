@@ -44,4 +44,13 @@ class Blog < ApplicationRecord
     end
   end
 
+  def self.search(search)
+    if search != ""
+      Blog.where(['title LIKE(?) OR body LIKE(?)', "%#{search}%", "%#{search}%"])
+    else
+      Blog.includes(:user).order('created_at DESC')
+    end
+  end
+
+
 end

@@ -1,6 +1,5 @@
 <main>
   <div class="sidebar">
-   
    <section class="categories">
      <h2 class="categories-heading">Brog Search</h2>
       <div class="sidebar-contents">
@@ -9,11 +8,8 @@
         <%= form.submit "検索", class: "search-btn" %>
         <% end %>
       </div>
-   </section> 
-     
-    
-    
-    
+   </section>  
+  
    <section class="categories">
      <h2 class="categories-heading">Scene</h2>
       <div class="sidebar-contents">
@@ -31,22 +27,29 @@
    </section>
   </div>
 
- <section class="blog">
-     <h2 class="blog-heading"><%=@place.name%>の投稿一覧</h2>
-      <% @blogs.each do |blog| %>
-      <div class="card">
-        <div class="card-body">
-          <h6 class="card-title">
-            <%=link_to blog_path(blog.id) do %><%= blog.title.truncate(25) %><% end %>
-            投稿者：<%= link_to  blog.user.name, user_path(blog.user.id) %>
-            いいね ♥<%= blog.favorites.count %>
-            コメント数<%= blog.blog_comments.count %>
-          </h6>
-        </div>
-      </div>
-      <% end %>
-      <%= paginate @blogs %>
- </section>
+  <section class="blog">  
+   <h2 class="blog-heading">検索結果</h2>
+   　　<% if @blogs == [] %>
+    　<h3 class = "seach-result">検索結果はありません</h3>
+    　<% else %>
+    
+    　　<% @blogs.each do |blog| %>
+         <div class="card">
+          <div class="card-body">
+            <h6 class="card-title">
+             <%=link_to blog_path(blog.id) do %><%= blog.title.truncate(25) %><% end %>
+             投稿者：<%= link_to  blog.user.name, user_path(blog.user.id) %>
+             いいね ♥<%= blog.favorites.count %>
+             コメント数<%= blog.blog_comments.count %>
+            </h6>
+          </div>
+         </div>
+        <% end %>
+    　　
+    　<% end %>
+    
+    <%= paginate @blogs %>
+  </section>
 
 </main>
 

@@ -13,6 +13,5 @@ class User < ApplicationRecord
     self.favorites.exists?(blog_id: blog.id)
   end
   
-  
-  
+
 end

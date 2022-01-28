@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   resources :blogs do
     resource :favorites, only: [:create, :destroy]
     resources :blog_comments,only: [:create, :destroy]
+    collection do
+      get 'search'
+    end
   end
 
   resources :users, only: [:show, :edit, :update]
