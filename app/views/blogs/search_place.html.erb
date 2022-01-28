@@ -36,7 +36,7 @@
         <div class="card-body">
           <h6 class="card-title">
             <%=link_to blog_path(blog.id) do %><%= blog.title.truncate(25) %><% end %>
-            <div class="serch-reault">
+            <div class="search-reault">
              投稿者：<%= link_to  blog.user.name, user_path(blog.user.id) %>
              いいね ♥<%= blog.favorites.count %>
              コメント数<%= blog.blog_comments.count %>

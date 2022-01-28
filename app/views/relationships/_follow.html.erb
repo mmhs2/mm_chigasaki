@@ -1,21 +1,19 @@
 <% if @users.exists? %>
   <% @users.each do |user| %>
-    <table>
-      <thead>
-        <tr>
-          <th>name</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%= user.name %></td>
-          <td>フォロー数: <%= user.followings.count %></td>
-          <td>フォロワー数: <%= user.followers.count %></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="card">
+              <div class="card-body">
+                <h6 class="card-title">
+                  <div class="search">
+                  <%= attachment_image_tag user, :profile_image, :fill,150, 150, fallback:"img/no_image.jpg"%>
+                  <div class="search-reault">
+                  <h5>ユーザー名：<%= user.name %></h5><br>
+                  <h5>ブログ投稿数：<%= user.blogs.where('created_at > ?', Date.today).count %></h5><br>
+                  <%= link_to "ユーザー詳細へ", user_path(user.id) , class: "btn btn-primary" %>
+                  </div>
+                  </div>
+                </h6>
+              </div>
+            </div>
   <% end %>
 <% else %>
   <p>ユーザーはいません</p>

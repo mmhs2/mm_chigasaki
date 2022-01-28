@@ -203,7 +203,11 @@ footer {
   text-align: center;
 }
 
-.serch-reault {
+.search {
+  display: flex;
+}
+
+.search-reault {
   text-align: right;
 }
 
