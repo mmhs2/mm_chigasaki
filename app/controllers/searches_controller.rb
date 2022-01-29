@@ -4,6 +4,7 @@ class SearchesController < ApplicationController
   def search
     @tag_list = Tag.all
     @places = Place.all
+
     @range = params[:range]
 
     if @range == "User"

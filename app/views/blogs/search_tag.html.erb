@@ -5,13 +5,13 @@
       <div class="sidebar-contents">
         <%= form_with url: search_path, local: true, method: :get do |f| %>
         <%= f.text_field :word %><br><br>
-        <%= f.select :range, options_for_select([['ユーザー'], ['ブログ']]) %>
+        <%= f.select :range, options_for_select([['ユーザー','User'], ['ブログ','Blog']]) %>
         <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backword_match"], ["部分一致","partial_match"]]) %><br><br>
         <%= f.submit "検索", class: "btn btn-primary" %>
         <% end %>
       </div>
    </section>
-     
+
    <section class="categories">
      <h2 class="categories-heading">Scene</h2>
       <div class="sidebar-contents">
@@ -29,7 +29,7 @@
    </section>
   </div>
 
- <section class="blog">  
+ <section class="blog">
   <h2 class="blog-heading">タグが「<%=@tag.name%>」の投稿一覧</h2>
    <% @blogs.each do |blog| %>
      <div class="card">
@@ -41,12 +41,12 @@
               投稿者：<%= link_to  blog.user.name, user_path(blog.user.id) %>
               いいね ♥<%= blog.favorites.count %>
               コメント数<%= blog.blog_comments.count %>
-             </div> 
+             </div>
          </h6>
        </div>
      </div>
     <% end %>
-    
+
     <%= paginate @blogs %>
  </section>
 
