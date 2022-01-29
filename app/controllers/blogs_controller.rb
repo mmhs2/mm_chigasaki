@@ -35,7 +35,6 @@ class BlogsController < ApplicationController
     end
   end
 
-
   def edit
     @blog = Blog.find(params[:id])
     @tag_list =@blog.tags.pluck(:name).join(",")
